@@ -15,21 +15,40 @@ var AudioBox = React.createClass({
         }
     },
     getInitialState: function(){
-        return {
-            player:false
-        }
+        return {src: ''};
     },
+
     handlePlay: function(i){
-        return i.soung;
-       //return {src: this.props.onClickPlay(i.song)}
+       console.log('My play '+i.soung);
+       return this.setState({src: i.soung});
+       //return i.soung;
     },
     render: function() {
+        var music = this.state.src;
+        var arrayMusic = music.split();
+        //if(music == "")
+        //{
+        //    return;
+        //}
+        //else{
+        //    var audio = new Audio();
+        //
+        //}
+        // ***** это просто код, думала если динамически создам все покатит, но нет
+        //<audio controls className={this.props.className} >
+        //    <source src={music} type="audio/mp3"/>
+        //</audio>
+        console.log(music);
         return (
             <div className="audioBox">
+                {arrayMusic.map(function(item){
+                   return(
+                       <audio controls >
+                           <source src={item} type="audio/mp3"/>
+                        </audio>)
+                })}
 
-                <audio controls className={this.props.className} >
-                    <source  type="audio/mp3"/>
-                </audio>
+
 
                 <ListBox data={this.props.data}  onClickPlay={this.handlePlay}/>
             </div>
@@ -42,10 +61,9 @@ var ListBox = React.createClass({
     //},
     handleClick: function(i){
 
-        console.log('You clicked: '+ i.soung)
-        return i.soung;
-        console.log(this.props.onClickPlay({src: i.soung}));
-        // console.log(arguments,i);
+        //console.log('You clicked: '+ i.soung);
+        console.log(this.props.onClickPlay(i));
+
     },
 
     render: function(){
