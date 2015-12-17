@@ -34,23 +34,49 @@ var AudioBox = React.createClass({
     }
     });
 var ListBox = React.createClass({
-    render: function () {
-        var li = this.props.data.map(function(nameSoung){
-            return(
-                <a href="#" data-src={nameSoung.soung}>
-                    <li key={nameSoung.id}>{nameSoung.soung}</li>
-                </a>
-            );
-        });
+        getInitialState: function(){
+        return {}
+},
+        handleClick: function(i){
+
+           console.log('You clicked: '+ this.props.data.soung[i])
+        },
+    //render: function () {
+    //    var li = this.props.data.map(function(nameSoung){
+    //        return(
+    //
+    //                <li key={nameSoung.id}><a href="#" data-src={nameSoung.soung}>{nameSoung.soung}</a></li>
+    //
+    //        );
+    //    });
+    //    return (
+    //        <ol className="listBox">
+    //
+    //                {li}
+    //
+    //        </ol>
+    //    )
+    //}
+    render: function(){
+
+
         return (
-            <ol className="listBox">
+                <ol className="listBox">
 
-                    {li}
+            {this.props.data.map(function(nameSoung, i){
+                    console.log(nameSoung);
+                    return  (
+                        <li key={nameSoung.id}>
+                            <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung.soung)} >{nameSoung.soung}</a>
+                         </li>
+                );
+                },this)}
 
-            </ol>
-        )
-    }
-});
+
+                </ol>
+            );
+
+}});
 
 ReactDOM.render(
 <AudioBox data={data}/>,
