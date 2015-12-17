@@ -39,24 +39,10 @@ var ListBox = React.createClass({
 },
         handleClick: function(i){
 
-           console.log('You clicked: '+ this.props.data.soung[i])
+           console.log('You clicked: '+ i.soung)
+           // console.log(arguments,i);
         },
-    //render: function () {
-    //    var li = this.props.data.map(function(nameSoung){
-    //        return(
-    //
-    //                <li key={nameSoung.id}><a href="#" data-src={nameSoung.soung}>{nameSoung.soung}</a></li>
-    //
-    //        );
-    //    });
-    //    return (
-    //        <ol className="listBox">
-    //
-    //                {li}
-    //
-    //        </ol>
-    //    )
-    //}
+
     render: function(){
 
 
@@ -67,7 +53,9 @@ var ListBox = React.createClass({
                     console.log(nameSoung);
                     return  (
                         <li key={nameSoung.id}>
-                            <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung.soung)} >{nameSoung.soung}</a>
+                            <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung)} >
+                                {nameSoung.soung}
+                            </a>
                          </li>
                 );
                 },this)}
