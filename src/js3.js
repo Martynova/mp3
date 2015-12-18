@@ -17,35 +17,40 @@ var AudioBox = React.createClass({
     getInitialState: function(){
         return {src: ''};
     },
+    //componentWillMount: function(){
+    //    this.setState({src: i.soung})
+    //},
 
     handlePlay: function(i){
        console.log('My play '+i.soung);
-       return this.setState({src: i.soung});
-       //return i.soung;
+
+       this.setState({src: i.soung});
+        console.log(this.refs.audioEl);
+       this.refs.audioEl.pause();
+        this.refs.audioEl.load();
+
+
+
+    },
+    componentDidMount: function(prevProps, prevState){ //вызывается сразу после монтирования. Инициализация этого требует, чтобы DOM узлы шли сюда
+        this.refs.audioEl.load();
     },
     render: function() {
         var music = this.state.src;
         var arrayMusic = music.split();
-        //if(music == "")
-        //{
-        //    return;
-        //}
-        //else{
-        //    var audio = new Audio();
-        //
-        //}
-        // ***** это просто код, думала если динамически создам все покатит, но нет
-        //<audio controls className={this.props.className} >
-        //    <source src={music} type="audio/mp3"/>
-        //</audio>
+
         console.log(music);
+
         return (
             <div className="audioBox">
                 {arrayMusic.map(function(item){
                    return(
-                       <audio controls >
-                           <source src={item} type="audio/mp3"/>
-                        </audio>)
+
+                       <audio controls ref="audioEl">
+                           <source src={item}  type="audio/mp3"/>
+                        </audio>
+
+                   )
                 })}
 
 
