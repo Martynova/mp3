@@ -20,8 +20,20 @@ var AudioBox = React.createClass({
 
     handlePlay: function(i){
        console.log('My play '+i.soung);
-       return this.setState({src: i.soung});
-       //return i.soung;
+       this.setState({src: i.soung});
+       //this.audioEl.onerror = function () {console.log(arguments)}
+       //this.audioEl.pause();
+       //this.refs.audioEl.pause();
+       //this.refs.audioEl.load();
+       /*this.audioEl.oncanplaythrough = function () {
+         this.audioEl.play();
+       }*/
+       return i.soung;
+    },
+    componentDidUpdate: function (prevProps, prevState) {
+      if (this.refs.audioEl) {
+        this.refs.audioEl.load();
+      }
     },
     render: function() {
         var music = this.state.src;
@@ -39,11 +51,12 @@ var AudioBox = React.createClass({
         //    <source src={music} type="audio/mp3"/>
         //</audio>
         console.log(music);
+        var self = this;
         return (
             <div className="audioBox">
                 {arrayMusic.map(function(item){
                    return(
-                       <audio controls >
+                       <audio controls ref="audioEl" autoPlay>
                            <source src={item} type="audio/mp3"/>
                         </audio>)
                 })}
