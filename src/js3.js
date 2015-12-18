@@ -1,9 +1,10 @@
 /**
  * Created by i.martynova on 12/17/2015.
  */
+//var Alert = require('react-bootstrap/lib/Alert');
 var data = [
-    {id:1, soung:"music/kolobok.mp3"},
-    {id:2, soung:"music/kukla.mp3"}
+    {id:1, soung:"music/kolobok.mp3", year: "1983", singer:"детские песни"},
+    {id:2, soung:"music/kukla.mp3", year:"1955", singer:"детские песни"}
 ];
 var AudioBox = React.createClass({
     propTypes: {
@@ -61,9 +62,13 @@ var AudioBox = React.createClass({
     }
 });
 var ListBox = React.createClass({
-    //getInitialState: function(){
-    //    return {}
-    //},
+    getInitialState: function(){
+        return (
+            {soung: 'soung'},
+            {year: 'year'},
+            {singer: 'singer'}
+        );
+    },
     handleClick: function(i){
 
         //console.log('You clicked: '+ i.soung);
@@ -73,26 +78,39 @@ var ListBox = React.createClass({
 
     render: function(){
 
-
-        return (
-            <ol className="listBox">
-
-                {this.props.data.map(function(nameSoung, i){
-                    console.log(nameSoung);
-                    return  (
-                        <li key={nameSoung.id}>
-                            <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung)} >
-                                {nameSoung.soung}
-                            </a>
-                        </li>
-                    );
-                },this)}
-
-
-            </ol>
+        var nameS = this.props.data.map(function(nameSoung){
+            console.log(nameS);
+            console.log(nameSoung);
+        return(
+            <tr className="listBox">
+            <td key={nameSoung.id}>
+                <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung)} >
+                            {nameSoung.soung}
+                </a>
+            </td>
+            <td>
+                {nameSoung.year}
+            </td>
+                <td>
+                    {nameSoung.singer}
+                </td>
+            </tr>
         );
+        },this);
+        return (
+            <table className="table-striped" >
+                <tr>
+                    <th>{this.state.soung}</th>
+                    <th>{this.state.year}</th>
+                    <th>{this.state.singer}</th>
+                </tr>
 
-    }});
+                    {nameS}
+
+            </table>
+        );
+       }
+    });
 
 ReactDOM.render(
     <AudioBox data={data}/>,
