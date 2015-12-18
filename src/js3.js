@@ -63,11 +63,11 @@ var AudioBox = React.createClass({
 });
 var ListBox = React.createClass({
     getInitialState: function(){
-        return (
-            {soung: 'soung'},
-            {year: 'year'},
-            {singer: 'singer'}
-        );
+        return {
+            soung: 'soung',
+            year: 'year',
+            singer: 'singer'}
+
     },
     handleClick: function(i){
 
