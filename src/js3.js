@@ -1,10 +1,12 @@
+
 /**
  * Created by i.martynova on 12/17/2015.
  */
 //var Alert = require('react-bootstrap/lib/Alert');
 var data = [
     {id:1, soung:"music/kolobok.mp3", year: "1983", singer:"детские песни"},
-    {id:2, soung:"music/kukla.mp3", year:"1955", singer:"детские песни"}
+    {id:2, soung:"music/otulibki.mp3", year:"1955", singer:"детские песни"},
+    {id:3, soung:"music/kukla.mp3", year:"1984", singer:"детс песня"}
 ];
 var AudioBox = React.createClass({
     propTypes: {
@@ -23,11 +25,11 @@ var AudioBox = React.createClass({
     //},
 
     handlePlay: function(i){
-       console.log('My play '+i.soung);
+        console.log('My play '+i.soung);
 
-       this.setState({src: i.soung});
+        this.setState({src: i.soung});
         console.log(this.refs.audioEl);
-       this.refs.audioEl.pause();
+        this.refs.audioEl.pause();
         this.refs.audioEl.load();
 
 
@@ -45,13 +47,13 @@ var AudioBox = React.createClass({
         return (
             <div className="audioBox">
                 {arrayMusic.map(function(item){
-                   return(
+                    return(
 
-                       <audio controls ref="audioEl">
-                           <source src={item}  type="audio/mp3"/>
+                        <audio controls ref="audioEl">
+                            <source src={item}  type="audio/mp3"/>
                         </audio>
 
-                   )
+                    )
                 })}
 
 
@@ -75,42 +77,60 @@ var ListBox = React.createClass({
         console.log(this.props.onClickPlay(i));
 
     },
+    sortData:function(){
+      var sortData = this.props.data;
+        console.log(sortData);
+        // sortData.sort()
+        //// {
+        ////    return td1.soung-td2.soung;
+        ////});
+        //for(var i=0; i < sortData.length; i++){
+        //    console.log(sortData[i].soung);
+        //}
+       //this.refs.tableEl;
+        var table=document.querySelector(".table-striped");
+        console.log(table);
+        table.onclick = function(e){
+            if(e.target.tagName != "TH")return;
+        }
+        sortTable(e.target.cellIndex, e.target.getAttribute('date-type'))
+    },
 
     render: function(){
 
         var nameS = this.props.data.map(function(nameSoung){
             console.log(nameS);
             console.log(nameSoung);
-        return(
-            <tr className="listBox">
-            <td key={nameSoung.id}>
-                <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung)} >
+            return(
+                <tr className="listBox">
+                    <td key={nameSoung.id}>
+                        <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung)} >
                             {nameSoung.soung}
-                </a>
-            </td>
-            <td>
-                {nameSoung.year}
-            </td>
-                <td>
-                    {nameSoung.singer}
-                </td>
-            </tr>
-        );
+                        </a>
+                    </td>
+                    <td>
+                        {nameSoung.year}
+                    </td>
+                    <td>
+                        {nameSoung.singer}
+                    </td>
+                </tr>
+            );
         },this);
         return (
             <table className="table-striped" >
                 <tr>
-                    <th>{this.state.soung}</th>
-                    <th>{this.state.year}</th>
+                    <th data-type="string" onClick = {this.sortData}>{this.state.soung}</th>
+                    <th data-type="namber">{this.state.year}</th>
                     <th>{this.state.singer}</th>
                 </tr>
 
-                    {nameS}
+                {nameS}
 
             </table>
         );
-       }
-    });
+    }
+});
 
 ReactDOM.render(
     <AudioBox data={data}/>,
