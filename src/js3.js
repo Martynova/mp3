@@ -139,9 +139,9 @@ var ListBox = React.createClass({
             <table className="table-striped" >
                 <thead>
                 <tr >
-                    <th onClick = {this.sortSoung}><span className={this.state.className}></span>{this.state.soung}</th>
-                    <th onClick = {this.sortYear}><span className={this.state.className}></span>{this.state.year}</th>
-                    <th onClick = {this.sortSinger}><span className={this.state.className}></span>{this.state.singer} </th>
+                    <th onClick = {this.sortSoung}><span className={this.state.className} aria-hidden="true">{this.state.soung}</span></th>
+                    <th onClick = {this.sortYear}><span className={this.state.className} aria-hidden="true">{this.state.year}</span></th>
+                    <th onClick = {this.sortSinger}><span className={this.state.className} aria-hidden="true">{this.state.singer}</span> </th>
                 </tr>
                 </thead>
                 <tbody>
