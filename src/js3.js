@@ -77,9 +77,12 @@ var ListBox = React.createClass({
         console.log(this.props.onClickPlay(i));
 
     },
-    sortData:function(){
-      var sortData = this.props.data;
-        console.log(sortData);
+    componentDidMount:function(e){
+
+    },
+    sortData:function(e){
+      //var sortData = this.props.data;
+      //  console.log(sortData);
         // sortData.sort()
         //// {
         ////    return td1.soung-td2.soung;
@@ -89,11 +92,46 @@ var ListBox = React.createClass({
         //}
        //this.refs.tableEl;
         var table=document.querySelector(".table-striped");
+        console.log(e.target.getAttribute('data-type'));
+
+        console.log(e.target.cellIndex);
+        var colNum=e.target.cellIndex;
+        var type =  e.target.getAttribute('date-type');
+
+        sortTable(colNum,type);
         console.log(table);
         table.onclick = function(e){
             if(e.target.tagName != "TH")return;
-        }
-        sortTable(e.target.cellIndex, e.target.getAttribute('date-type'))
+        };
+
+
+
+            function sortTable(colNum, type){
+                var tbody = table.getElementsByTagName('tbody')[0];
+                //console.log(tbody);
+                var rowArray = [].slice.call(tbody.rows);
+                console.log(rowArray);
+                var compare;
+                switch (type){
+                    case 'number':
+                        compare = function(rowA, rowB){
+                            return rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML;
+                        };
+                        break;
+                    case 'string':
+                        compare = function(rowA, rowB){
+                            return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1: -1;
+                        };
+                        break;
+                }
+                console.log(rowArray.sort(compare));
+                table.removeChild(tbody);
+                for (var i=0; i<rowArray.length; i++){
+                    tbody.appendChild(rowArray[i]);
+                }
+                table.appendChild(tbody);
+            }
+
     },
 
     render: function(){
@@ -119,11 +157,13 @@ var ListBox = React.createClass({
         },this);
         return (
             <table className="table-striped" >
-                <tr>
-                    <th data-type="string" onClick = {this.sortData}>{this.state.soung}</th>
-                    <th data-type="namber">{this.state.year}</th>
+                <thead>
+                <tr >
+                    <th data-type="string"  onClick = {this.sortData}>{this.state.soung}</th>
+                    <th data-type="number">{this.state.year}</th>
                     <th>{this.state.singer}</th>
                 </tr>
+                </thead>
 
                 {nameS}
 
