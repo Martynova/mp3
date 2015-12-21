@@ -70,6 +70,7 @@ var ListBox = React.createClass({
             year: 'year',
             singer: 'singer',
             data: this.props.data,
+            className: 'glyphicon glyphicon glyphicon-sort',
             }
 
 
@@ -89,7 +90,7 @@ var ListBox = React.createClass({
             }
 
         var sortArray = this.state.data.sort(sortTableSoung);
-        this.setState({data: sortArray});
+        this.setState({data: sortArray, className: 'glyphicon glyphicon-sort-by-alphabet'});
 
     },
     sortYear: function(){
@@ -98,7 +99,7 @@ var ListBox = React.createClass({
               return a.year-b.year;
             }
       var sortArray=array.sort(sortTableYear);
-      this.setState({data: sortArray});
+      this.setState({data: sortArray, className: 'glyphicon glyphicon-sort-by-alphabet'});
     },
     sortSinger: function(){
 
@@ -107,7 +108,7 @@ var ListBox = React.createClass({
             }
 
         var sortArray = this.state.data.sort(sortTableSoung);
-        this.setState({data: sortArray});
+        this.setState({data: sortArray, className: 'glyphicon glyphicon-sort-by-alphabet'});
     },
 
     render: function(){
@@ -138,9 +139,9 @@ var ListBox = React.createClass({
             <table className="table-striped" >
                 <thead>
                 <tr >
-                    <th onClick = {this.sortSoung}>{this.state.soung}</th>
-                    <th onClick = {this.sortYear}>{this.state.year}</th>
-                    <th onClick = {this.sortSinger}>{this.state.singer} </th>
+                    <th onClick = {this.sortSoung}><span className={this.state.className}></span>{this.state.soung}</th>
+                    <th onClick = {this.sortYear}><span className={this.state.className}></span>{this.state.year}</th>
+                    <th onClick = {this.sortSinger}><span className={this.state.className}></span>{this.state.singer} </th>
                 </tr>
                 </thead>
                 <tbody>
