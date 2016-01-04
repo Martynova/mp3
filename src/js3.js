@@ -18,6 +18,7 @@ var data = [
 
 
 ];
+
 var AudioBox = React.createClass({
 
     getDefaultProps: function(){
@@ -52,7 +53,7 @@ var AudioBox = React.createClass({
         var music = this.state.src;
         var arrayMusic = music.split();
 
-        console.log(music);
+
 
         return (
             <div className="audioBox">
@@ -74,6 +75,8 @@ var AudioBox = React.createClass({
         );
     }
 });
+
+
 var ListBox = React.createClass({
     getInitialState: function(){
         return {
@@ -90,7 +93,7 @@ var ListBox = React.createClass({
 
 
     },
-    handleClick: function(i){
+    handleClick1: function(i){
         console.log(i);
         console.log('You clicked: '+ i.soung);
         console.log(this.props.onClickPlay(i));
@@ -150,17 +153,27 @@ var ListBox = React.createClass({
 
         return{
            newDat: this.state.data.slice(start, end),
+           numPages: this.getNumPages(),
 
         }
 
+    },
+    getNumPages:function(){
+//console.log(this.state.pageSize);
 
-        
-        //this.setState({data: newData});
+        var numPages=Math.floor(this.props.data.length / this.state.pageSize);
+
+
+        if(this.props.data.length % this.state.pageSize > 0){
+            numPages++
+        }
+       // console.log(numPages);
+        return numPages;
     },
     render: function(){
 
 var page = this.getPage();
-       // console.log(page.newDat);
+       console.log(page.newDat);
 
         var nameS =page.newDat.map(function(nameSoung){
 
@@ -170,7 +183,7 @@ var page = this.getPage();
                         {nameSoung.id}
                     </td>
                     <td>
-                        <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick.bind(this,nameSoung)} >
+                        <a  href="#" data-src={nameSoung.soung} onClick={this.handleClick1.bind(this,nameSoung)} >
                             {nameSoung.soung}
                         </a>
                     </td>
@@ -198,7 +211,7 @@ var page = this.getPage();
                 {nameS}
                 </tbody>
             </table>
-            <PaginationBox pageSize={this.state.pageSize}  data={this.props.data}/>
+            <PaginationBox pageSize={this.state.pageSize}  data={this.props.data} />
             </div>
         );
     }
@@ -210,36 +223,50 @@ var PaginationBox = React.createClass({
      return{
 
          data: this.props.data,
+         pages: [
+            {numPage:"<<"},
+            {numPage:"1"},
+            {numPage:"2"},
+            {numPage:">>"}
+         ]
 
      }
 
     },
-
+    handleClick2:function(i){
+       console.log(i);
+    },
     render: function(){
-console.log(this.props.pageSize);
-        return(
+//console.log();
+    var pagePag= this.state.pages.map(function(page){
 
-            <nav>
-                <ul className="pagination pagination-sm">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        )
+           return(
+               <li>
+                   <a href="#" >
+                       {page.numPage}
+                   </a>
+               </li>
+           )
+        });
+            return(
+
+                <nav>
+                    <ul className="pagination pagination-sm">
+                        {pagePag}
+                    </ul>
+                </nav>
+                )
     }
 })
 
 ReactDOM.render(
-    <AudioBox data={data}/>,
+    <AudioBox data={data} />,
     document.getElementById('audio_div')
 );
+//<li><a onClick={this.handleClick2}>1</a></li>
+//<li><a href="#">2</a></li>
+//<li>
+//    <a href="#" aria-label="Next">
+//        <span aria-hidden="true"></span>
+//    </a>
+//</li>
