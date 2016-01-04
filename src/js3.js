@@ -148,21 +148,21 @@ var ListBox = React.createClass({
         var end = this.state.pageSize;
 
 
-        var newDat = this.state.data.slice(start, end);
+        return{
+           newDat: this.state.data.slice(start, end),
 
-        return newDat;
-        //console.log(newData);
+        }
+
+
+        
         //this.setState({data: newData});
     },
     render: function(){
 
 var page = this.getPage();
-        console.log(page);
-        //var page = this.getPage();
-        //console.log(page);
-        console.log(this.props.data);
+       // console.log(page.newDat);
 
-        var nameS =page.map(function(nameSoung){
+        var nameS =page.newDat.map(function(nameSoung){
 
             return(
                 <tr className="listBox">
@@ -198,7 +198,7 @@ var page = this.getPage();
                 {nameS}
                 </tbody>
             </table>
-            <PaginationBox  data={this.props.data}/>
+            <PaginationBox pageSize={this.state.pageSize}  data={this.props.data}/>
             </div>
         );
     }
@@ -216,7 +216,7 @@ var PaginationBox = React.createClass({
     },
 
     render: function(){
-
+console.log(this.props.pageSize);
         return(
 
             <nav>
