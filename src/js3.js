@@ -146,14 +146,22 @@ var ListBox = React.createClass({
         });
         console.log(sortArray);
     },
-    getPage: function () {
+    getPage: function (page) {
         var start = this.state.pageSize * (this.state.currentPage - 1);
-        var end = this.state.pageSize;
+        var end = start + this.state.pageSize;
+        console.log("My page in getPage: "+ page);
 
 
         return {
             newDat: this.state.data.slice(start, end),
             numPages: this.getNumPages(),
+            getClickPage: function (page) {
+                console.log("My page in getClickPage: "+ page.numPage);
+
+                return this.setState({
+                    currentPage: page.numPage
+                });
+            },
 
         }
 
@@ -170,9 +178,7 @@ var ListBox = React.createClass({
         // console.log(numPages);
         return numPages;
     },
-    getClickPage: function (page) {
-            console.log("My page in getClickPage: "+ page.numPage);
-    },
+
     render: function () {
 
         var page = this.getPage();
@@ -218,7 +224,7 @@ var ListBox = React.createClass({
                     {nameS}
                     </tbody>
                 </table>
-                <PaginationBox pageSize={this.state.pageSize} data={this.props.data} getClickPage={this.getClickPage}/>
+                <PaginationBox pageSize={this.state.pageSize} data={this.props.data} getClickPage={this.getPage().getClickPage}/>
             </div>
         );
     }
@@ -242,7 +248,7 @@ var PaginationBox = React.createClass({
     },
     handleClick2: function (page) {
         console.log("My page handleClick2: " + page.numPage);
-        this.props.getClickPage(page);// передаю мой page в ListBox;
+        this.props.getClickPage(page);// передаю мой page в ListBox d getClickPage, который находится getPage;
     },
     render: function () {
 //console.log();
