@@ -150,18 +150,23 @@ var ListBox = React.createClass({
         var start = this.state.pageSize * (this.state.currentPage - 1);
         var end = start + this.state.pageSize;
         console.log("My page in getPage: "+ page);
-
-
+        //var getPageThis = this;
+        //
         return {
             newDat: this.state.data.slice(start, end),
             numPages: this.getNumPages(),
             getClickPage: function (page) {
                 console.log("My page in getClickPage: "+ page.numPage);
+                console.log("My this: "+ this);
 
+                debugger;
+                
                 return this.setState({
-                    currentPage: page.numPage
-                });
-            },
+                        currentPage: page.numPage
+                    });
+
+
+            }.bind(this)
 
         }
 
