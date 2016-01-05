@@ -45,8 +45,11 @@ var AudioBox = React.createClass({
 
 
     },
-    componentDidMount: function (prevProps, prevState) { //вызывается сразу после монтирования. Инициализация этого требует, чтобы DOM узлы шли сюда
-        this.refs.audioEl.load();
+    componentDidUpdate: function (prevProps, prevState) { //Вызывается сразу после возникновения обновление. Этот метод не вызывается для начала рендеринга.
+         if(this.refs.audioEl){
+           this.refs.audioEl.load();
+       }
+
     },
     render: function () {
         var music = this.state.src;
@@ -160,7 +163,7 @@ var ListBox = React.createClass({
                 console.log("My this: "+ this);
 
                 debugger;
-                
+
                 return this.setState({
                         currentPage: page.numPage
                     });
