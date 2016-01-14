@@ -20,6 +20,23 @@ var data = [
 
 var AudioBox = React.createClass({
 
+    loadCommentsServer: function(){ // посылаю запрос
+        $.ajax({
+
+            url: this.props.url,
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                console.log(data);
+
+                this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
+
     getDefaultProps: function () {
         return {
             className: 'player',
@@ -28,8 +45,14 @@ var AudioBox = React.createClass({
     getInitialState: function () {
         return {
             src: '',
-            pageSize: 10
+            pageSize: 10,
+            data: []
+
         };
+    },
+    componentDidMount: function(){
+        this.loadCommentsServer();
+      setInterval(this.loadCommentsServer, 2000);
     },
     //componentWillMount: function(){
     //    this.setState({src: i.soung})
@@ -282,13 +305,6 @@ var PaginationBox = React.createClass({
 })
 
 ReactDOM.render(
-    <AudioBox data={data}/>,
+    <AudioBox /*data={data}*/  url="/api/song"/>, // передаю url
     document.getElementById('audio_div')
 );
-//<li><a onClick={this.handleClick2}>1</a></li>
-//<li><a href="#">2</a></li>
-//<li>
-//    <a href="#" aria-label="Next">
-//        <span aria-hidden="true"></span>
-//    </a>
-//</li>
