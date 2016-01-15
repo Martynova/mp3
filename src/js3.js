@@ -24,6 +24,7 @@ var AudioBox = React.createClass({
         $.ajax({
 
             url: this.props.url,
+
             dataType: 'json',
             cache: false,
             success: function(data){
@@ -35,6 +36,7 @@ var AudioBox = React.createClass({
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
+        console.log(this.props.url);
     },
 
     getDefaultProps: function () {
@@ -54,9 +56,7 @@ var AudioBox = React.createClass({
         this.loadCommentsServer();
       setInterval(this.loadCommentsServer, 2000);
     },
-    //componentWillMount: function(){
-    //    this.setState({src: i.soung})
-    //},
+
 
     handlePlay: function (i) {
         console.log('My play ' + i.soung);
@@ -305,6 +305,6 @@ var PaginationBox = React.createClass({
 })
 
 ReactDOM.render(
-    <AudioBox /*data={data}*/  url="/api/song"/>, // передаю url
+    <AudioBox /*data={data}*/  url="/song"/>, // передаю url
     document.getElementById('audio_div')
 );
