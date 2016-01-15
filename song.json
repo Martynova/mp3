@@ -1,17 +1,17 @@
 
 [
 
-  {"id": "1", "soung": "music/kolobok.mp3", "year": "1983", "singer": "детские песни"},
-  {"id": "2", "soung": "music/otulibki.mp3", "year": "1955", "singer": "детские песни"},
-  {"id": "3", "soung": "music/kukla.mp3", "year": "1981", "singer": "детс песня"},
-  {"id": "4", "soung": "music/ja_svoboden.mp3", "year": "1997", "singer": "кипелов"},
-  {"id": "5", "soung": "music/shtil.mp3", "year": "2001", "singer": "кипелов"},
-  {"id": "6", "soung": "music/svoboda.mp3", "year": "2002", "singer": "кипелов"},
-  {"id": "7", "soung": "music/poterjannij_raj.mp3", "year": "1999", "singer": "кипелов"},
-  {"id": "8", "soung": "music/angelskaja_pil.mp3", "year": "1995", "singer": "ночь короче дня, кипелов"},
-  {"id": "9", "soung": "music/begi_za_solncem.mp3", "year": "1998", "singer": "генератор зла, кипелов"},
-  {"id": "10", "soung": "music/prorok.mp3", "year": "2001", "singer": "кипелов"},
-  {"id": "11", "soung": "music/ne_ver_mne.mp3", "year": "1991", "singer": "кровь за кровь, кипелов"}
+  {"id": "1", "soung": "music/kolobok.mp3", "year": "1983", "singer": "РґРµС‚СЃРєРёРµ РїРµСЃРЅРё"},
+  {"id": "2", "soung": "music/otulibki.mp3", "year": "1955", "singer": "РґРµС‚СЃРєРёРµ РїРµСЃРЅРё"},
+  {"id": "3", "soung": "music/kukla.mp3", "year": "1981", "singer": "РґРµС‚СЃ РїРµСЃРЅСЏ"},
+  {"id": "4", "soung": "music/ja_svoboden.mp3", "year": "1997", "singer": "РєРёРїРµР»РѕРІ"},
+  {"id": "5", "soung": "music/shtil.mp3", "year": "2001", "singer": "РєРёРїРµР»РѕРІ"},
+  {"id": "6", "soung": "music/svoboda.mp3", "year": "2002", "singer": "РєРёРїРµР»РѕРІ"},
+  {"id": "7", "soung": "music/poterjannij_raj.mp3", "year": "1999", "singer": "РєРёРїРµР»РѕРІ"},
+  {"id": "8", "soung": "music/angelskaja_pil.mp3", "year": "1995", "singer": "РЅРѕС‡СЊ РєРѕСЂРѕС‡Рµ РґРЅСЏ, РєРёРїРµР»РѕРІ"},
+  {"id": "9", "soung": "music/begi_za_solncem.mp3", "year": "1998", "singer": "РіРµРЅРµСЂР°С‚РѕСЂ Р·Р»Р°, РєРёРїРµР»РѕРІ"},
+  {"id": "10", "soung": "music/prorok.mp3", "year": "2001", "singer": "РєРёРїРµР»РѕРІ"},
+  {"id": "11", "soung": "music/ne_ver_mne.mp3", "year": "1991", "singer": "РєСЂРѕРІСЊ Р·Р° РєСЂРѕРІСЊ, РєРёРїРµР»РѕРІ"}
 
 
 ]

@@ -28,7 +28,7 @@ var AudioBox = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data){
-                console.log(data);
+                //console.log(data);
 
                 this.setState({data: data});
             }.bind(this),
@@ -77,8 +77,6 @@ var AudioBox = React.createClass({
     render: function () {
         var music = this.state.src;
         var arrayMusic = music.split();
-
-
         return (
             <div className="audioBox">
                 {arrayMusic.map(function (item) {
@@ -92,7 +90,7 @@ var AudioBox = React.createClass({
                 })}
 
 
-                <ListBox data={this.props.data} handlePlay={this.handlePlay}/>
+                <ListBox data={this.state.data} handlePlay={this.handlePlay}/>
 
             </div>
         );
@@ -179,7 +177,7 @@ var ListBox = React.createClass({
         //var getPageThis = this;
         //
         return {
-            newDat: this.state.data.slice(start, end),
+            newDat: this.props.data ? this.props.data.slice(start, end) : [],
             numPages: this.getNumPages(),
             getClickPage: function (page) {
                 console.log("My page in getClickPage: "+ page.numPage);
@@ -199,14 +197,16 @@ var ListBox = React.createClass({
     },
     getNumPages: function () {
 //console.log(this.state.pageSize);
-
-        var numPages = Math.floor(this.props.data.length / this.state.pageSize);
+        var numPages = 0;
+        if (this.props.data) {
+        numPages = Math.floor(this.props.data.length / this.state.pageSize);
 
 
         if (this.props.data.length % this.state.pageSize > 0) {
             numPages++
         }
         // console.log(numPages);
+        }
         return numPages;
     },
 
@@ -214,7 +214,7 @@ var ListBox = React.createClass({
 
         var page = this.getPage();
         console.log(page.newDat);
-
+//
         var nameS = page.newDat.map(function (nameSoung) {
 
             return (

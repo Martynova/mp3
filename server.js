@@ -4,28 +4,28 @@ var  fs = require('fs');
 
 
 http.createServer(function(req, res){
-//console.log(req.url);
-    switch (req.url) {
+console.log(req.url);
+    switch (true) {
 
-        case '/':
+        case req.url == '/':
            sendFile('index.html', res);
             break;
-        case '/song':
+        case /\/song.+/.test(req.url):
             sendFile('song.json', res);
-            //console.log(res);
+            //console.log(res);de
+            break;
 
-
-
-
-
+      default:
+        sendFile('.'+req.url,res);
     }
 
-}).listen(8080);
+
+}).listen(8081);
 console.log("gdfgdfg");
 
 
 function sendFile(fileName, res){
-    var fileStream = fs.createReadStream(fileName); // readFile("_путь", function(err, data){}
+    var fileStream = fs.createReadStream(fileName); // readFile("_пїЅпїЅпїЅпїЅ", function(err, data){}
     fileStream
         .on('error', function(){
             res.statusCode = 500;
