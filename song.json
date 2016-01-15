@@ -1,6 +1,7 @@
 
 [
 
+
   {"id": "1", "soung": "music/kolobok.mp3", "year": "1983", "singer": "детские песни"},
   {"id": "2", "soung": "music/otulibki.mp3", "year": "1955", "singer": "детские песни"},
   {"id": "3", "soung": "music/kukla.mp3", "year": "1981", "singer": "детс песня"},
@@ -11,7 +12,24 @@
   {"id": "8", "soung": "music/angelskaja_pil.mp3", "year": "1995", "singer": "ночь короче дня, кипелов"},
   {"id": "9", "soung": "music/begi_za_solncem.mp3", "year": "1998", "singer": "генератор зла, кипелов"},
   {"id": "10", "soung": "music/prorok.mp3", "year": "2001", "singer": "кипелов"},
-  {"id": "11", "soung": "music/ne_ver_mne.mp3", "year": "1991", "singer": "кровь за кровь, кипелов"}
-
-
+  {"id": "11", "soung": "music/ne_ver_mne.mp3", "year": "1991", "singer": "кровь за кровь, кипелов"},
+  {"id": "12", "soung": "music/kolobok.mp3", "year": "1983", "singer": "детские песни"},
+  {"id": "13", "soung": "music/otulibki.mp3", "year": "1955", "singer": "детские песни"},
+  {"id": "14", "soung": "music/kukla.mp3", "year": "1981", "singer": "детс песня"},
+  {"id": "15", "soung": "music/ja_svoboden.mp3", "year": "1997", "singer": "кипелов"},
+  {"id": "16", "soung": "music/shtil.mp3", "year": "2001", "singer": "кипелов"},
+  {"id": "17", "soung": "music/svoboda.mp3", "year": "2002", "singer": "кипелов"},
+  {"id": "18", "soung": "music/poterjannij_raj.mp3", "year": "1999", "singer": "кипелов"},
+  {"id": "19", "soung": "music/angelskaja_pil.mp3", "year": "1995", "singer": "ночь короче дня, кипелов"},
+  {"id": "20", "soung": "music/begi_za_solncem.mp3", "year": "1998", "singer": "генератор зла, кипелов"},
+  {"id": "21", "soung": "music/prorok.mp3", "year": "2001", "singer": "кипелов"},
+  {"id": "22", "soung": "music/ne_ver_mne.mp3", "year": "1991", "singer": "кровь за кровь, кипелов"},
+  {"id": "23", "soung": "music/ja_svoboden.mp3", "year": "1997", "singer": "кипелов"},
+  {"id": "24", "soung": "music/shtil.mp3", "year": "2001", "singer": "кипелов"},
+  {"id": "25", "soung": "music/svoboda.mp3", "year": "2002", "singer": "кипелов"},
+  {"id": "26", "soung": "music/poterjannij_raj.mp3", "year": "1999", "singer": "кипелов"},
+  {"id": "27", "soung": "music/angelskaja_pil.mp3", "year": "1995", "singer": "ночь короче дня, кипелов"},
+  {"id": "28", "soung": "music/begi_za_solncem.mp3", "year": "1998", "singer": "генератор зла, кипелов"},
+  {"id": "29", "soung": "music/prorok.mp3", "year": "2001", "singer": "кипелов"},
+  {"id": "30", "soung": "music/ne_ver_mne.mp3", "year": "1991", "singer": "кровь за кровь, кипелов"}
 ]

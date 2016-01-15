@@ -103,7 +103,7 @@ var ListBox = React.createClass({
     handleClick1: function (i) { // по какой песне кликнули
        // console.log(i);
         console.log('You clicked: ' + i.soung);
-        //console.log(this.props.handlePlay(i));
+        console.log(this.props.handlePlay(i));
 
     },
 
@@ -113,7 +113,7 @@ var ListBox = React.createClass({
             return a.soung > b.soung ? 1 : -1;
         }
 
-        var sortArray = this.state.data.sort(sortTableSoung);
+        var sortArray = this.props.data.sort(sortTableSoung);
         if (e.target.tagName == 'SPAN') {
             this.setState({className: 'glyphicon glyphicon-sort-by-alphabet'});
         }
@@ -123,7 +123,7 @@ var ListBox = React.createClass({
 
     },
     sortYear: function () {
-        var array = this.state.data;
+        var array = this.props.data;
 
         function sortTableYear(a, b) {
             return a.year - b.year;
@@ -133,7 +133,7 @@ var ListBox = React.createClass({
         this.setState({data: sortArray});
     },
     sortId: function () {
-        var array = this.state.data;
+        var array = this.props.data;
 
 
         function sortTableId(a, b) {
@@ -149,7 +149,7 @@ var ListBox = React.createClass({
             return a.singer > b.singer ? 1 : -1;
         }
 
-        var sortArray = this.state.data.sort(sortTableSoung);
+        var sortArray = this.props.data.sort(sortTableSoung);
         this.setState({
             data: sortArray
 
@@ -159,21 +159,34 @@ var ListBox = React.createClass({
     getPage: function (page) {
         var start = this.state.pageSize * (this.state.currentPage - 1);
         var end = start + this.state.pageSize;
-        console.log("My page in getPage: " + page);
+        //console.log("My page in getPage: " + page);
         //var getPageThis = this;
-        //
+
         return {
             newDat: this.props.data ? this.props.data.slice(start, end) : [],
             numPages: this.getNumPages(),
-            getClickPage: function (page) { // получили по какой странице кликнули меняем в State currentPage
-                console.log("My page in getClickPage: " + page.numPage);
+            getClickPage: function (numberPage) { // получили по какой странице кликнули меняем в State currentPage
+                console.log("My page in getClickPage: " + numberPage);
                 //console.log("My this: " + this);
 
                 //debugger;
+                        if(numberPage == "<<"){
+                            return this.setState({
+                                currentPage: 1
+                            })}
+                         else if(numberPage == ">>"){
+                                return this.setState({
+                                    currentPage: this.getNumPages()
 
-                return this.setState({
-                    currentPage: page.numPage
-                });
+                                })
+                            }
+                            else
+                            {
+                                return this.setState({
+                                    currentPage: numberPage
+                                });
+                            }
+
 
 
             }.bind(this)
@@ -259,6 +272,7 @@ var PaginationBox = React.createClass({
                 {numPage: "<<"},
                 {numPage: "1"},
                 {numPage: "2"},
+                {numPage: "3"},
                 {numPage: ">>"}
             ]
 
@@ -267,7 +281,13 @@ var PaginationBox = React.createClass({
     },
     handleClick2: function (page) { // кликнули по номеру страницы
         console.log("My page handleClick2: " + page.numPage);
-        this.props.getClickPage(page);// передаю мой page в ListBox d getClickPage, который находится getPage;
+        //console.log(page);
+
+
+                this.props.getClickPage(page.numPage);// передаю мой page в ListBox d getClickPage, который находится getPage;
+
+
+
     },
     render: function () {
 //console.log();
