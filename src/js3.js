@@ -2,37 +2,23 @@
  * Created by i.martynova on 12/17/2015.
  */
 //var Alert = require('react-bootstrap/lib/Alert');
-var data = [
-    {id: "1", soung: "music/kolobok.mp3", year: "1983", singer: "детские песни"},
-    {id: "2", soung: "music/otulibki.mp3", year: "1955", singer: "детские песни"},
-    {id: "3", soung: "music/kukla.mp3", year: "1981", singer: "детс песня"},
-    {id: "4", soung: "music/ja_svoboden.mp3", year: "1997", singer: "кипелов"},
-    {id: "5", soung: "music/shtil.mp3", year: "2001", singer: "кипелов"},
-    {id: "6", soung: "music/svoboda.mp3", year: "2002", singer: "кипелов"},
-    {id: "7", soung: "music/poterjannij_raj.mp3", year: "1999", singer: "кипелов"},
-    {id: "8", soung: "music/angelskaja_pil.mp3", year: "1995", singer: "ночь короче дня, кипелов"},
-    {id: "9", soung: "music/begi_za_solncem.mp3", year: "1998", singer: "генератор зла, кипелов"},
-    {id: "10", soung: "music/prorok.mp3", year: "2001", singer: "кипелов"},
-    {id: "11", soung: "music/ne_ver_mne.mp3", year: "1991", singer: "кровь за кровь, кипелов"}
 
-
-];
 
 var AudioBox = React.createClass({
 
-    loadCommentsServer: function(){ // посылаю запрос
+    loadCommentsServer: function () { // посылаю запрос
         $.ajax({
 
             url: this.props.url,
 
             dataType: 'json',
             cache: false,
-            success: function(data){
+            success: function (data) {
                 //console.log(data);
 
                 this.setState({data: data});
             }.bind(this),
-            error: function(xhr, status, err){
+            error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
@@ -52,9 +38,9 @@ var AudioBox = React.createClass({
 
         };
     },
-    componentDidMount: function(){
+    componentDidMount: function () {   //Вызывается один раз,только на клиенте сразу же после того, как происходит инициализация рендеринга.
         this.loadCommentsServer();
-      setInterval(this.loadCommentsServer, 2000);
+        //setInterval(this.loadCommentsServer, 2000);
     },
 
 
@@ -69,9 +55,9 @@ var AudioBox = React.createClass({
 
     },
     componentDidUpdate: function (prevProps, prevState) { //Вызывается сразу после возникновения обновление. Этот метод не вызывается для начала рендеринга.
-         if(this.refs.audioEl){
-           this.refs.audioEl.load();
-       }
+        if (this.refs.audioEl) {
+            this.refs.audioEl.load();
+        }
 
     },
     render: function () {
@@ -107,17 +93,17 @@ var ListBox = React.createClass({
             number: '№',
             data: this.props.data,
             className: 'glyphicon glyphicon glyphicon-sort',
-            pageSize: 10,
-            currentPage: 1,
+            pageSize: 10,// колличество на странице
+            currentPage: 1 //  текущая страница
 
         }
 
 
     },
-    handleClick1: function (i) {
-        console.log(i);
+    handleClick1: function (i) { // по какой песне кликнули
+       // console.log(i);
         console.log('You clicked: ' + i.soung);
-        console.log(this.props.handlePlay(i));
+        //console.log(this.props.handlePlay(i));
 
     },
 
@@ -173,21 +159,21 @@ var ListBox = React.createClass({
     getPage: function (page) {
         var start = this.state.pageSize * (this.state.currentPage - 1);
         var end = start + this.state.pageSize;
-        console.log("My page in getPage: "+ page);
+        console.log("My page in getPage: " + page);
         //var getPageThis = this;
         //
         return {
             newDat: this.props.data ? this.props.data.slice(start, end) : [],
             numPages: this.getNumPages(),
-            getClickPage: function (page) {
-                console.log("My page in getClickPage: "+ page.numPage);
-                console.log("My this: "+ this);
+            getClickPage: function (page) { // получили по какой странице кликнули меняем в State currentPage
+                console.log("My page in getClickPage: " + page.numPage);
+                //console.log("My this: " + this);
 
-                debugger;
+                //debugger;
 
                 return this.setState({
-                        currentPage: page.numPage
-                    });
+                    currentPage: page.numPage
+                });
 
 
             }.bind(this)
@@ -195,17 +181,18 @@ var ListBox = React.createClass({
         }
 
     },
-    getNumPages: function () {
+    getNumPages: function () { // номер страницы;
 //console.log(this.state.pageSize);
         var numPages = 0;
         if (this.props.data) {
-        numPages = Math.floor(this.props.data.length / this.state.pageSize);
+            numPages = Math.floor(this.props.data.length / this.state.pageSize);
+            console.log(this.props.data.length)
 
 
-        if (this.props.data.length % this.state.pageSize > 0) {
-            numPages++
-        }
-        // console.log(numPages);
+            if (this.props.data.length % this.state.pageSize > 0) {
+                numPages++
+            }
+            // console.log(numPages);
         }
         return numPages;
     },
@@ -213,8 +200,8 @@ var ListBox = React.createClass({
     render: function () {
 
         var page = this.getPage();
-        console.log(page.newDat);
-//
+        // console.log(page.newDat);
+
         var nameS = page.newDat.map(function (nameSoung) {
 
             return (
@@ -255,7 +242,8 @@ var ListBox = React.createClass({
                     {nameS}
                     </tbody>
                 </table>
-                <PaginationBox pageSize={this.state.pageSize} data={this.props.data} getClickPage={this.getPage().getClickPage}/>
+                <PaginationBox pageSize={this.state.pageSize} data={this.props.data}
+                               getClickPage={this.getPage().getClickPage}/>
             </div>
         );
     }
@@ -277,7 +265,7 @@ var PaginationBox = React.createClass({
         }
 
     },
-    handleClick2: function (page) {
+    handleClick2: function (page) { // кликнули по номеру страницы
         console.log("My page handleClick2: " + page.numPage);
         this.props.getClickPage(page);// передаю мой page в ListBox d getClickPage, который находится getPage;
     },
@@ -305,6 +293,6 @@ var PaginationBox = React.createClass({
 })
 
 ReactDOM.render(
-    <AudioBox /*data={data}*/  url="/song"/>, // передаю url
+    <AudioBox url="/song"/>, // передаю url
     document.getElementById('audio_div')
 );
